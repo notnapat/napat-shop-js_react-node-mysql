@@ -1,0 +1,130 @@
+	สร้างโปรเจค react
+	
+ท่าง่าย
+- สร้างโฟร์เดอร์ที่จะทำ โปรเจค ไว้ที่ต้องการ
+- เปิด vs code ใช้ cmd of vs code 
+- ใช้คำ สั่ง ใน cmd of vscode >> npx create-react-app ชื่อไฟล์ที่จะช้ react เช่น client
+- สร้าง server folder มาคู่กับ client folder
+- สร้าง index.js ในไฟล์ server
+- เปิด cmd ขึ้นมา 2 ตัว ตัวที่1 cd client , ตัวที่2 cd server
+- รันตัวที่1 >> npm start == รัน react  
+- เปิดไฟล์ client >> public >>= index.html
+- ติดตั้ง bootstrap บน index.html
+- เปิดไฟล์ client >> src >>= App.js 
+- ลบข้อมูลในไฟล์ App.js
+  - ลบ 
+     import logo from './logo.svg';
+	import './App.css';
+  - ลบขอมูลที่อยู่ใน 
+     <div className="App">
+        ลบที่แค่ที่อยู่ข้างใน ลบหมด 
+     </div>
+  - สร้าง from กรอกข้อมูล หรือ คอร์นเทน ลงใน div (เข้าไปดูตัวอย่างในไฟล์ client >> src >> App-comment.js)
+
+-สลับ cmd มาอันที่ cd server
+  - พิมพ์ npm init >> เอ็นเทอร์เรื่อยๆ จนถึง (yes) ก็พิมพ์ yes == ติดตั้ง package.json ลงในโฟลเดอร์ server เพื่อเรียกใช้ dependencies {  mysql cors express }
+  - พิมพ์ npm i mysql cors express >>เอ็นเทอร์ 
+  - เรียกใช้ dependencies ในไฟล์ server >> index.js  (เข้าไปดูตัวอย่างในไฟล์)
+
+- โหลดติดตั้ง xampp == จำ ลองserver mysql
+  - เข้า xampp controt panel >> กด start apache กับ mysql >> เปิดบราวเชอร์ เข้าเว็บ localhost กดเข้าไปที่ phpmyadmin , หรือเข้าไปที่ localhost/phpmyadmin
+  - กด New เพื่อสร้าง database 
+    - ช่องแรกใส่ชื่อ ช่องสองเลือก utf8_general_Ci เสร็จแล้วกด create
+    - แล้วไปที่แทบ SQL เพื่อพิมพ์คำสั่งสร้าง data ข้างล่างคือตัวอย่าง
+      - สร้าง colum
+        CREATE TABLE employees(
+          id int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+          name varchar(100) NOT NULL,
+          age int(10) 	NOT NULL,
+          country varchar(100) NOT NULL,
+          position varchar(100) NOT NULL,
+          wage int(10) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;  >> เสร็จแล้งกด go
+      - แล้วเข้าไปที่ อยู่ตรง left nav  >> employeeSystem >> employess >> insert อยู่ top nav == เพื่อสร้างข้อมูลลง column ที่พึ่งสร้างเมื่อกี้
+        - ใส่ข้อมูลลงตามคอลัมน์ที่สร้างไว้ เช่น ชื่่อ อายุ ประเทศ ตำแหน่ง เงินเดือน
+        
+- ไปที่ไฟล์ server >> index.js 
+  - เพิ่ม code เชื่อมต่อ mysqlDBที่สร้างเมื่อกี้ 
+    const db = mysql.sreateConnection({
+      host : "localhost",
+      user : "root",
+      password : "",
+      database : "employeeSystem"
+     })
+
+- พิมพ์ใน cmd in server >> npm i nodemon == ติดตั้ง nodemon เพื่อ เวลา code เปลี่ยน server จะไม่ได้ restart ทุกรอบ
+  - ไปที่ server >> package.json 
+    - เพิ่ม คำสั่งข้างล่างเเข้าไปใน "scripts"
+      "scripts":{
+        "dev":nodemon index"  // dev == คำ สั้งรัน , index == ชื่อไฟล์ที่ต้องการให้ nodemon ทำงาน มั้งนะ
+      }
+  - พิมพ์คำ สั่งใน cmd >> npm run dev == เรียกใช้ nodemon
+  
+- ไปที่ไฟล์ server >> index.js เพิ่มคำสั่งดึงข้อมูลจาก mysqlDB มาแสดงหน้าเว็บ localhost:3001/employees (ตัวอย่างในไฟล์ index-comment.js)
+
+- client >> src >> App.js (ex.App.comment.js) == ติดตั้งเครื่องมือ
+  - ติดตั้ง axios
+  - import1 เรียกใช้ axios  == ใช้ดึงข้อมูล
+	- เพิ่มแถบ cmd มาอีก 1  >> cd client >> npm i axios == ติดตั้ง axios ใช้ให้ font-end ดึงข้อมูล
+  - import2 เรียกใช้ useState  == ใช้เก็บ และอัพเดทข้อมูล
+  
+- client >> src >> App.js (ex.App.comment.js) == get date ดึงข้อมูลมาไว้หน้าเว็บ
+  - Get1 ดึงข้อมูลจาก DB มาแสดง หน้าเว็บ ('/employees')
+- client >> src >> App.js (ex.App.comment.js) == ดึงข้อมูลจาก ('/employees') มาแสดง หรือ มาใช้งานหน้าเว็บ
+  - Get2 สร้างตัวแปล useState เก็บข้อมูลจาก  หน้าเว็บ  ('http://localhost:3001/employees') 
+  - Get3 Get3 สร้างฟังชั่น ให้ปุ่มกดโชว์ข้อมูลทำงาน 
+  - Get4 เมื่อกดปุ่มตกลง ข้อมูลจะจาก useState employeeList จะแสดง
+  - Get5 ใช้ข้อมูลจาก useState employeeList มาสร้าง content  ผ่าน พารามิเตอร์
+
+- client >> src >> App.js (ex.App-comment.js) == add data เพิ่มข้อมูลลง mysqlDB
+  - Add1 สร้าง useState เก็บค่า input
+  - Add2 สร้าง event ดัก ข้อมูลจาก value inpust ลงไปไว้ใน ค่า state
+  - Add3 สร้าง ฟังชั่นในการบันทึกข้อมูล
+  - Add4 นำ ตัวแปลฟังชั่นการบันทึกข้อมูล มา สร้าง onclick ที่ปุ่ม addEmployee
+- server >> index.js (ex.index-comment.js) == เพิ่มข้อมูลลง mysqlDB
+  - Add5 ไปดึงค่า useState
+    - Add5.1 แล้วเพิ่มข้อมูลลง mysqlDB
+
+- client >> src >> App.js (ex.App-comment.js) == Update ข้อมูลลง DB
+  - Up1 สร้าง ปุ่ม input เพื่อ update
+  - Up2 สร้าง useState มาเก็บค่า inpust update
+  - Up3 ดักค่า input ที่ต้องการอัพเดท
+  - Up4 สร้างฟังชั่น อัพเดทเพื่อนำไปใส่ปุ่่มกด กดเพื่อใช้งานฟังชั่น
+  - Up5 นำตัวแปลฟังชั่น update มาใส่ไว้ในปุ่มกดเพื่อ update
+- server >> index.js (ex.index-comment.js) == อับเดทข้อมูล ลงDB
+  - Up 6ดึงข้อมูลจาก DB มาแสดง หน้าเว็บ ('/employees')
+
+- client >> src >> App.js (ex.App-comment.js) ==  สร้างฟังชั่น ลบข้อมูลใน DB  
+  - Delete1 ฟังชั่นใช้กับปุ่มกด delete
+  - Delete2 นำตัวแปลฟังชั่นกด delete มาใส่เพื่อกด ลบข้อมูล
+- server >> index.js (ex.index-comment.js) == ลยข้อมูลในDB  
+  - Delete3 ใช้ id จากหน้าเว็บ ('/delete/:id') ลบข้อมูลใน DB
+  
+ท่ายาก ใช้คำสั่ง linux สร้างโฟล์เดอร์ และเปิด vscode
+- เปิด cmd of windows >> คีลัดใช้เปิด windows + R
+- cd ชื่อไฟล์ >> ไปยังทีต้องการสร้างโปรเจค
+- mkdir ชื่อไฟล์ที่จะให้เป็นโปรเจค == สร้างโฟล์เดอร์ หรือ โปรเจค
+- cd ชื่อไฟล์โปรเจคที่สร้างเมื่อกี้ 
+- npx create-react-app ชื่อไฟล์ที่จะใช้ react เช่น client ถ้าไม่ได้ให้ทำตามด้านล่าง
+
+ถ้า npx ใน cmd of windows ไม่ได้ให้ทำตามด้านล่าง
+
+- code หรือ code . == เปิด vscode
+- ใช้ cmd of vscode พิมพ์คำสั่งแทน 
+- npx create-react-app ชื่อไฟล์ที่ต้องใช้ react เช่น client
+- ทำ ตามท่าง่ายต่อ
+
+### การเข้ารหัส รหัสผ่าน
+cmd >> server => npm install bcrypt
+  ## ติดตั้ง เพิ่ม
+  => npm install express-session body-parser cookie-parser
+
+
+
+
+
+
+
+
+
+
