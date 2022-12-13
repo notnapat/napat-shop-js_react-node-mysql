@@ -1,11 +1,11 @@
-// import React from 'react'
+import React from 'react'
 import Axios from 'axios'
-import { useState } from 'react'
-import './userSignUp.css'
-import {useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import './pages.style/userSignUp.css'
 
 
-function SignUp() {
+
+function UserSignUp() {
 
       // ฟอร์มสมัคร user
       const [firstName, setFirstName] = useState("")
@@ -46,7 +46,10 @@ function SignUp() {
                   }
                   else{
                         // console.log(response.data)
-                        setLoginStatus(response.data[0].email)
+                        setLoginStatus(response.data[0].phone)
+                        // ("http://localhost:3000")
+                        // .then("./navbar/NavbarIndex.js")
+                        window.location = '/'
                   }
             })
       }
@@ -57,7 +60,8 @@ function SignUp() {
             //BCS10
             if (response.data.loggedIn === true)      
             //BCS9
-                  setLoginStatus(response.data.user[0].email);
+                  setLoginStatus(response.data.user[0].email)
+                  
                   // console.log(response)
             })
       }, [])
@@ -133,4 +137,4 @@ function SignUp() {
       );
 }
 
-export default SignUp;
+export default UserSignUp;

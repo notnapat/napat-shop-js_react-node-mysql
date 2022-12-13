@@ -1,0 +1,25 @@
+/* {
+    background-color: #292525;
+    
+} */
+.button1{
+    display: flex;
+    justify-content: center;
+    /* text-align: center; == ใข้กับ display: flex; ไม่ได้ */
+
+}
+
+.card-title{
+    font-size: 1vw !important;
+    /* background: blue !important; */
+}
+.card-text{
+    font-size: 10px !important;
+}
+
+.text-button{
+    /* display: flex;
+    justify-self: senter; */
+    /* align-items:end; */
+    /* bottom:; */
+}

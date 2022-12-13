@@ -1,0 +1,17 @@
+.body-homepage{
+    
+    background-color: #292525;
+    /* height: auto; */
+}
+.sidebar {
+
+    background-color: red;
+    /* margin-left: -1px;
+    margin-right: -1px; */
+    width: 100%;
+}
+.h-sidebar{
+    height: auto;
+}
+
+
