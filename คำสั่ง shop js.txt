@@ -114,10 +114,13 @@
 - npx create-react-app ชื่อไฟล์ที่ต้องใช้ react เช่น client
 - ทำ ตามท่าง่ายต่อ
 
-### การเข้ารหัส รหัสผ่าน
+##### การเข้ารหัส รหัสผ่าน
 cmd >> server => npm install bcrypt
   ## ติดตั้ง เพิ่ม
   => npm install express-session body-parser cookie-parser
+
+##### CRUD+Image
+express-fileupload sequelize c
 
 
 
